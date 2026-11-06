@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewComponents\DefaultViewComponents\" />
     <Folder Include="wwwroot\admin\" />
     <Folder Include="wwwroot\portfolio\" />
   </ItemGroup>
