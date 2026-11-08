@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\admin\" />
-    <Folder Include="wwwroot\portfolio\" />
   </ItemGroup>
 
 </Project>

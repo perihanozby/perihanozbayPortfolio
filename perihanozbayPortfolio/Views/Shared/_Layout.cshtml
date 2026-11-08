@@ -1,50 +1,98 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿
+<!DOCTYPE html>
+<html lang="tr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - perihanozbayPortfolio</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/perihanozbayPortfolio.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">perihanozbayPortfolio</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <meta name="shell-type" content="web_standard" />
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - perihanozbayPortfolio - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <title>@(ViewData["Title"] ?? "Perihan Özbay | Yazılım Mühendisi")</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap"
+          rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+          rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+          rel="stylesheet" />
+
+    <!-- Portfolio CSS -->
+    <link rel="stylesheet"
+          href="~/portfolio/css/portfolio.css"
+          asp-append-version="true" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Configuration -->
+    <script src="~/portfolio/js/tailwind-config.js"
+            asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+
+<body class="bg-background font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-fixed">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-surface/85 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+
+        <div class="h-20 max-w-[1240px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between gap-gutter">
+
+            <!-- LOGO -->
+            <div class="flex items-center gap-space-md shrink-0">
+
+                <a class="flex items-center gap-space-sm group text-decoration-none"
+                   asp-controller="Default"
+                   asp-action="Index"
+                   data-path="ana-sayfa">
+
+                    <span class="w-9 h-9 rounded-lg bg-primary-container text-surface-container-lowest font-headline-sm text-headline-sm flex items-center justify-center font-bold shadow-sm transition-transform group-hover:scale-105">
+                        PÖ
+                    </span>
+
+                    <div class="flex flex-col">
+
+                        <span class="font-headline-sm text-headline-sm text-primary tracking-tight leading-none">
+                            perihan.özbay
+                        </span>
+
+                        <span class="font-label-sm text-label-sm text-secondary tracking-wider uppercase mt-0.5">
+                            Yazılım Mühendisi
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+            <!-- NAVBAR VIEWCOMPONENT -->
+            @await Component.InvokeAsync("_DefaultNavbarComponentPartial")
+
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="w-full pt-20 bg-background">
+
+        @RenderBody()
+
+    </main>
+
+    <!-- FOOTER VIEWCOMPONENT -->
+    @await Component.InvokeAsync("_DefaultFooterComponentPartial")
+
+    <!-- Portfolio JavaScript -->
+    <script src="~/portfolio/js/portfolio.js"
+            asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
