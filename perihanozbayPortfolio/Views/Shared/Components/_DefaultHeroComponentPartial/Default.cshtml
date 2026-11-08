@@ -1,194 +1,173 @@
-﻿<section
-            class="max-w-[1240px] mx-auto px-margin-mobile md:px-margin pt-space-lg md:pt-space-xl pb-space-xl w-full"
-          >
-            <div
-              class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-gutter items-center"
-            >
-              <!-- Left: Editorial Content -->
-              <div class="lg:col-span-7 flex flex-col items-start">
+﻿
+@model perihanozbayPortfolio.Entities.Hero
+
+@if (Model != null)
+{
+    <section
+        class="max-w-[1240px] mx-auto px-margin-mobile md:px-margin pt-space-lg md:pt-space-xl pb-space-xl w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-gutter items-center">
+
+            <!-- Left: Editorial Content -->
+            <div class="lg:col-span-7 flex flex-col items-start">
                 <div
-                  class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary-container/50 text-primary font-label-sm text-label-sm tracking-widest uppercase mb-space-md shadow-sm"
-                >
-                  <span
-                    class="w-2 h-2 rounded-full bg-secondary animate-pulse"
-                  ></span>
-                  YAZILIM MÜHENDİSİ · .NET GELİŞTİRİCİ
+                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary-container/50 text-primary font-label-sm text-label-sm tracking-widest uppercase mb-space-md shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    @Model.BadgeText
                 </div>
+
                 <h1
-                  class="font-display text-headline-lg md:text-display text-primary tracking-tight leading-none mb-space-sm"
-                >
-                  Merhaba, ben
-                  <span
-                    class="text-tertiary-container underline decoration-secondary-container decoration-4 underline-offset-8"
-                    >Perihan</span
-                  >.
+                    class="font-display text-headline-lg md:text-display text-primary tracking-tight leading-none mb-space-sm">
+                    @Model.GreetingText
+                    <span
+                        class="text-tertiary-container underline decoration-secondary-container decoration-4 underline-offset-8">@Model.HighlightedName</span>.
                 </h1>
+
                 <p
-                  class="font-headline-md text-headline-sm md:text-headline-md text-on-surface-variant font-medium leading-snug mb-space-md max-w-2xl"
-                >
-                  Fikirleri çalışan, dayanıklı ve ölçeklenen yazılımlara
-                  dönüştürüyorum.
+                    class="font-headline-md text-headline-sm md:text-headline-md text-on-surface-variant font-medium leading-snug mb-space-md max-w-2xl">
+                    @Model.Headline
                 </p>
+
                 <p
-                  class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant/90 max-w-xl mb-space-lg leading-relaxed"
-                >
-                  Modern web uygulamaları, güçlü backend mimarileri ve
-                  veritabanı odaklı çözümler geliştiriyorum. Teknolojiyi reel
-                  kurumsal iş süreçleriyle, muhasebe akışlarıyla ve kullanıcı
-                  deneyimiyle buluşturmayı önemsiyorum.
+                    class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant/90 max-w-xl mb-space-lg leading-relaxed">
+                    @Model.Description
                 </p>
+
                 <!-- CTAs -->
                 <div
-                  class="flex flex-wrap items-center gap-space-sm md:gap-space-md w-full sm:w-auto mb-space-lg"
-                >
-                  <a
-                    class="px-space-md py-3 rounded-lg bg-tertiary-container hover:bg-tertiary text-surface-container-lowest font-label-lg text-label-lg transition-all shadow-md hover:-translate-y-0.5 inline-flex items-center gap-2"
-                    href="#projeler"
-                  >
-                    <span>Projelerimi İncele</span>
-                    <span class="material-symbols-outlined text-[18px]"
-                      >arrow_downward</span
-                    >
-                  </a>
-                  <a
-                    class="px-space-md py-3 rounded-lg bg-transparent hover:bg-primary-container text-primary-container hover:text-surface-container-lowest font-label-lg text-label-lg transition-all shadow-sm shadow-primary/5 inline-flex items-center gap-2"
-                    href="#iletisim"
-                  >
-                    <span>Benimle İletişime Geç</span>
-                    <span class="material-symbols-outlined text-[18px]"
-                      >mail</span
-                    >
-                  </a>
-                  <a
-                    class="inline-flex items-center gap-1.5 px-3 py-3 text-primary-container font-label-md text-label-md hover:text-tertiary-container transition-colors underline decoration-outline-variant underline-offset-4"
-                    href="#cv-indir"
-                  >
-                    <span class="material-symbols-outlined text-[20px]"
-                      >download</span
-                    >
-                    <span>CV İndir</span>
-                  </a>
+                    class="flex flex-wrap items-center gap-space-sm md:gap-space-md w-full sm:w-auto mb-space-lg">
+                    <a
+                        class="px-space-md py-3 rounded-lg bg-tertiary-container hover:bg-tertiary text-surface-container-lowest font-label-lg text-label-lg transition-all shadow-md hover:-translate-y-0.5 inline-flex items-center gap-2"
+                        href="#projeler">
+                        <span>Projelerimi İncele</span>
+                        <span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+                    </a>
+
+                    <a
+                        class="px-space-md py-3 rounded-lg bg-transparent hover:bg-primary-container text-primary-container hover:text-surface-container-lowest font-label-lg text-label-lg transition-all shadow-sm shadow-primary/5 inline-flex items-center gap-2"
+                        href="#iletisim">
+                        <span>Benimle İletişime Geç</span>
+                        <span class="material-symbols-outlined text-[18px]">mail</span>
+                    </a>
+
+                    <a
+                        class="inline-flex items-center gap-1.5 px-3 py-3 text-primary-container font-label-md text-label-md hover:text-tertiary-container transition-colors underline decoration-outline-variant underline-offset-4"
+                        href="#cv-indir">
+                        <span class="material-symbols-outlined text-[20px]">download</span>
+                        <span>CV İndir</span>
+                    </a>
                 </div>
+
                 <!-- Social Proof Badges & Icon Buttons -->
-                <div
-                  class="flex items-center gap-space-md pt-space-xs text-on-surface-variant"
-                >
-                  <span
-                    class="font-label-sm text-label-sm uppercase tracking-wider text-outline"
-                    >Bağlantılar</span
-                  >
-                  <div class="w-6 h-px bg-outline-variant"></div>
-                  <div class="flex items-center gap-2">
-                    <a
-                      aria-label="GitHub Profilim"
-                      class="w-10 h-10 rounded-lg bg-surface-container hover:bg-secondary-container text-primary flex items-center justify-center transition-all shadow-sm"
-                      href="https://github.com"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <span class="material-symbols-outlined text-[20px]"
-                        >code</span
-                      >
-                    </a>
-                    <a
-                      aria-label="LinkedIn Profilim"
-                      class="w-10 h-10 rounded-lg bg-surface-container hover:bg-secondary-container text-primary flex items-center justify-center transition-all shadow-sm"
-                      href="https://linkedin.com"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <span class="material-symbols-outlined text-[20px]"
-                        >badge</span
-                      >
-                    </a>
-                    <a
-                      aria-label="E-posta Gönder"
-                      class="w-10 h-10 rounded-lg bg-surface-container hover:bg-secondary-container text-primary flex items-center justify-center transition-all shadow-sm"
-                      href="mailto:perihan@ozbay.dev"
-                    >
-                      <span class="material-symbols-outlined text-[20px]"
-                        >alternate_email</span
-                      >
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <!-- Right: Editorial Portrait & Technical Spec Card -->
-              <div
-                class="lg:col-span-5 relative mt-space-md lg:mt-0 flex justify-center"
-              >
-                <div class="relative w-full max-w-[420px]">
-                  <!-- Architectural Background Plate -->
-                  <div
-                    class="absolute -inset-3 bg-secondary-container/60 rounded-xl transform -rotate-2"
-                  ></div>
-                  <div
-                    class="relative bg-surface-container-lowest rounded-xl shadow-xl overflow-hidden p-space-sm flex flex-col"
-                  >
-                    <div
-                      class="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-high"
-                    >
-                      <img
-                        class="w-full h-full object-cover object-center"
-                        data-alt="Professional studio portrait of Perihan Özbay, a young female Turkish software engineer with warm soft lighting, minimalist cream and forest green studio aesthetic, wearing modern dark emerald blazer, intelligent calm expression, editorial quality"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBauR8dL1t_-dHAiP5OcKpYwir9fTv9Mf57nygpUXtSRiSeCJsI3zkmkkym-KAOYncJCztZmXCOFEpfnOXn2Gh16uKyelLIm-e4oc1yCZYZqrJY0kY4rIq1GC8sL1uAup7v3YEFsDeq68jbV52q8r96CrCzDvggI6MyMM_p66k_ZGfMC57UxD9DbJcCSAnHKW77z0OBf_uvrRSXfluNT3yF2CVCrkPkRdQt90d5E10"
-                      />
-                      <div
-                        class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"
-                      ></div>
-                      <!-- Bottom Badges inside Photo -->
-                      <div
-                        class="absolute bottom-4 left-4 right-4 flex flex-col gap-2"
-                      >
-                        <div
-                          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-lowest/95 backdrop-blur text-primary shadow-sm font-label-sm text-label-sm w-fit"
-                        >
-                          <span
-                            class="w-2 h-2 rounded-full bg-secondary-fixed-dim"
-                          ></span>
-                          <span>Malatya Turgut Özal Üniv. 2024 Mezunu</span>
-                        </div>
-                        <div
-                          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-container text-surface-container-lowest shadow-sm font-label-sm text-label-sm w-fit"
-                        >
-                          <span
-                            class="w-2 h-2 rounded-full bg-secondary-container animate-ping"
-                          ></span>
-                          <span
-                            >Açık: Yeni İş Fırsatları (.NET &amp; Backend)</span
-                          >
-                        </div>
-                      </div>
+                <div class="flex items-center gap-space-md pt-space-xs text-on-surface-variant">
+                    <span
+                        class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Bağlantılar</span>
+
+                    <div class="w-6 h-px bg-outline-variant"></div>
+
+                    <div class="flex items-center gap-2">
+                        <a
+                            aria-label="GitHub Profilim"
+                            class="w-10 h-10 rounded-lg bg-surface-container hover:bg-secondary-container text-primary flex items-center justify-center transition-all shadow-sm"
+                            href="https://github.com"
+                            rel="noopener noreferrer"
+                            target="_blank">
+                            <span class="material-symbols-outlined text-[20px]">code</span>
+                        </a>
+
+                        <a
+                            aria-label="LinkedIn Profilim"
+                            class="w-10 h-10 rounded-lg bg-surface-container hover:bg-secondary-container text-primary flex items-center justify-center transition-all shadow-sm"
+                            href="https://linkedin.com"
+                            rel="noopener noreferrer"
+                            target="_blank">
+                            <span class="material-symbols-outlined text-[20px]">badge</span>
+                        </a>
+
+                        <a
+                            aria-label="E-posta Gönder"
+                            class="w-10 h-10 rounded-lg bg-surface-container hover:bg-secondary-container text-primary flex items-center justify-center transition-all shadow-sm"
+                            href="mailto:perihan@ozbay.dev">
+                            <span class="material-symbols-outlined text-[20px]">alternate_email</span>
+                        </a>
                     </div>
-                    <!-- Metadata ticker -->
-                    <div class="p-space-sm grid grid-cols-2 gap-2 text-left">
-                      <div class="bg-surface-container-low p-2.5 rounded">
-                        <p
-                          class="font-label-sm text-label-sm text-outline uppercase tracking-wider"
-                        >
-                          Uzmanlık
-                        </p>
-                        <p
-                          class="font-headline-sm text-label-lg text-primary font-semibold"
-                        >
-                          C# · ASP.NET Core
-                        </p>
-                      </div>
-                      <div class="bg-surface-container-low p-2.5 rounded">
-                        <p
-                          class="font-label-sm text-label-sm text-outline uppercase tracking-wider"
-                        >
-                          Yaklaşım
-                        </p>
-                        <p
-                          class="font-headline-sm text-label-lg text-primary font-semibold"
-                        >
-                          Clean Architecture
-                        </p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </section>
+
+            <!-- Right: Editorial Portrait & Technical Spec Card -->
+            <div class="lg:col-span-5 relative mt-space-md lg:mt-0 flex justify-center">
+                <div class="relative w-full max-w-[420px]">
+
+                    <!-- Architectural Background Plate -->
+                    <div
+                        class="absolute -inset-3 bg-secondary-container/60 rounded-xl transform -rotate-2">
+                    </div>
+
+                    <div
+                        class="relative bg-surface-container-lowest rounded-xl shadow-xl overflow-hidden p-space-sm flex flex-col">
+
+                        <div
+                            class="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-high">
+
+                            <img
+                                class="w-full h-full object-cover object-center"
+                                data-alt="Professional studio portrait of Perihan Özbay, a young female Turkish software engineer with warm soft lighting, minimalist cream and forest green studio aesthetic, wearing modern dark emerald blazer, intelligent calm expression, editorial quality"
+                                src="@Model.ImageUrl"
+                                alt="@Model.HighlightedName"
+                            />
+
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent">
+                            </div>
+
+                            <!-- Bottom Badges inside Photo -->
+                            <div
+                                class="absolute bottom-4 left-4 right-4 flex flex-col gap-2">
+
+                                <div
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-lowest/95 backdrop-blur text-primary shadow-sm font-label-sm text-label-sm w-fit">
+                                    <span
+                                        class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span>
+                                    <span>@Model.EducationBadge</span>
+                                </div>
+
+                                <div
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-container text-surface-container-lowest shadow-sm font-label-sm text-label-sm w-fit">
+                                    <span
+                                        class="w-2 h-2 rounded-full bg-secondary-container animate-ping"></span>
+                                    <span>@Model.AvailabilityBadge</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metadata ticker -->
+                        <div class="p-space-sm grid grid-cols-2 gap-2 text-left">
+
+                            <div class="bg-surface-container-low p-2.5 rounded">
+                                <p
+                                    class="font-label-sm text-label-sm text-outline uppercase tracking-wider">
+                                    Uzmanlık
+                                </p>
+                                <p
+                                    class="font-headline-sm text-label-lg text-primary font-semibold">
+                                    @Model.Expertise
+                                </p>
+                            </div>
+
+                            <div class="bg-surface-container-low p-2.5 rounded">
+                                <p
+                                    class="font-label-sm text-label-sm text-outline uppercase tracking-wider">
+                                    Yaklaşım
+                                </p>
+                                <p
+                                    class="font-headline-sm text-label-lg text-primary font-semibold">
+                                    @Model.Approach
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

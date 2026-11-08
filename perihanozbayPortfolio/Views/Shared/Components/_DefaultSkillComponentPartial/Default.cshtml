@@ -1,541 +1,101 @@
-﻿<section
-          class="w-full py-space-xl bg-surface-container-low"
-          id="yetenekler"
-        >
-          <div class="max-w-[1240px] mx-auto px-margin-mobile md:px-margin">
-            <div
-              class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm"
-            >
-              <div>
-                <span
-                  class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold"
-                  >02 / Yetkinlik · Stack</span
-                >
-                <h2
-                  class="font-headline-lg text-headline-md md:text-headline-lg text-primary tracking-tight mt-1"
-                >
-                  Teknik Yetenekler
+﻿
+@model List<perihanozbayPortfolio.Entities.SkillCategory>
+
+<section class="w-full py-space-xl bg-surface-container-low" id="yetenekler">
+    <div class="max-w-[1240px] mx-auto px-margin-mobile md:px-margin">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+            <div>
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
+                    02 / Yetkinlik · Stack
+                </span>
+
+                <h2 class="font-headline-lg text-headline-md md:text-headline-lg text-primary tracking-tight mt-1">
+                    Teknik Yetenekler
                 </h2>
-              </div>
-              <p
-                class="font-body-sm text-body-sm text-on-surface-variant max-w-md"
-              >
+            </div>
+
+            <p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">
                 Pratik geliştirme süreçlerinde ve projelerde aktif kullanılan
                 teknoloji derinliği ve hakimiyet göstergeleri.
-              </p>
-            </div>
-            <!-- Skills Grid (Bento style) -->
-            <div
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md"
-            >
-              <!-- Category 1: Backend Architecture -->
-              <div
-                class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <div class="flex items-center justify-between mb-space-md">
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="p-2 rounded bg-secondary-container text-primary material-symbols-outlined text-[20px]"
-                        >dns</span
-                      >
-                      <h3
-                        class="font-headline-sm text-headline-sm text-primary"
-                      >
-                        Backend Geliştirme
-                      </h3>
-                    </div>
-                    <span
-                      class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-secondary font-bold"
-                      >Ana Odak</span
-                    >
-                  </div>
-                  <div class="space-y-3.5">
+            </p>
+        </div>
+
+        <!-- Skills Grid (Bento style) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+
+            @foreach (var category in Model)
+            {
+                <div class="@(category.IsWide ? "md:col-span-2 lg:col-span-2" : "") bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+
                     <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>C# / .NET Ecosystem</span>
-                        <span class="font-bold text-secondary">85%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-primary-container rounded-full"
-                          style="width: 85%"
-                        ></div>
-                      </div>
+                        <div class="flex items-center justify-between mb-space-md">
+                            <div class="flex items-center gap-2">
+
+                                <span class="p-2 rounded bg-secondary-container text-primary material-symbols-outlined text-[20px]">
+                                    @category.Icon
+                                </span>
+
+                                <h3 class="font-headline-sm text-headline-sm text-primary">
+                                    @category.Name
+                                </h3>
+                            </div>
+
+                            @if (!string.IsNullOrWhiteSpace(category.Badge))
+                            {
+                                <span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container @(category.DisplayOrder == 1 || category.IsWide ? "text-secondary" : "text-outline") font-bold">
+                                    @category.Badge
+                                </span>
+                            }
+                        </div>
+
+                        <div class="@(category.IsWide ? "grid grid-cols-1 md:grid-cols-3 gap-space-md" : "space-y-3.5")">
+
+                            @foreach (var skill in category.Skills)
+                            {
+                                <div>
+                                    <div class="flex justify-between font-label-md text-label-md text-primary mb-1">
+                                        <span>@skill.Name</span>
+
+                                        <span class="font-bold text-secondary">
+                                            @(skill.Percentage)%
+                                        </span>
+                                    </div>
+
+                                    <div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+                                        <div
+                                            class="h-full @category.ProgressBarColor rounded-full"
+                                            style="width: @(skill.Percentage)%">
+                                        </div>
+                                    </div>
+
+                                    @if (!string.IsNullOrWhiteSpace(skill.Description))
+                                    {
+                                        <p class="font-body-sm text-body-sm text-outline mt-1.5">
+                                            @skill.Description
+                                        </p>
+                                    }
+                                </div>
+                            }
+                        </div>
                     </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>ASP.NET Core MVC</span>
-                        <span class="font-bold text-secondary">85%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-primary-container rounded-full"
-                          style="width: 85%"
-                        ></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>RESTful Web API</span>
-                        <span class="font-bold text-secondary">85%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-primary-container rounded-full"
-                          style="width: 85%"
-                        ></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>Entity Framework Core</span>
-                        <span class="font-bold text-secondary">80%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-primary-container rounded-full"
-                          style="width: 80%"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
+
+                    @if (category.SkillTags.Any())
+                    {
+                        <div class="mt-space-md pt-3 border-t border-surface-container text-xs text-on-surface-variant flex flex-wrap gap-1.5">
+
+                            @foreach (var tag in category.SkillTags)
+                            {
+                                <span class="px-2 py-0.5 bg-surface-container rounded font-label-sm">
+                                    @tag.Name
+                                </span>
+                            }
+
+                        </div>
+                    }
                 </div>
-                <div
-                  class="mt-space-md pt-3 border-t border-surface-container text-xs text-on-surface-variant flex flex-wrap gap-1.5"
-                >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >Clean Architecture</span
-                  >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >Repository Pattern</span
-                  >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >Dependency Injection</span
-                  >
-                </div>
-              </div>
-              <!-- Category 2: Database Systems -->
-              <div
-                class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <div class="flex items-center justify-between mb-space-md">
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="p-2 rounded bg-secondary-container text-primary material-symbols-outlined text-[20px]"
-                        >database</span
-                      >
-                      <h3
-                        class="font-headline-sm text-headline-sm text-primary"
-                      >
-                        Veritabanı Sistemleri
-                      </h3>
-                    </div>
-                    <span
-                      class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-outline font-bold"
-                      >RDBMS</span
-                    >
-                  </div>
-                  <div class="space-y-3.5">
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>Microsoft SQL Server</span>
-                        <span class="font-bold text-secondary">80%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-secondary rounded-full"
-                          style="width: 80%"
-                        ></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>PostgreSQL</span>
-                        <span class="font-bold text-secondary">75%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-secondary rounded-full"
-                          style="width: 75%"
-                        ></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>T-SQL &amp; Stored Procedures</span>
-                        <span class="font-bold text-secondary">75%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-secondary rounded-full"
-                          style="width: 75%"
-                        ></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>Veri Modelleme &amp; İlişkilendirme</span>
-                        <span class="font-bold text-secondary">80%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-secondary rounded-full"
-                          style="width: 80%"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="mt-space-md pt-3 border-t border-surface-container text-xs text-on-surface-variant flex flex-wrap gap-1.5"
-                >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >İndeksleme</span
-                  >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >Migrasyon Yönetimi</span
-                  >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >ACID</span
-                  >
-                </div>
-              </div>
-              <!-- Category 3: Frontend & Web UI -->
-              <div
-                class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <div class="flex items-center justify-between mb-space-md">
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="p-2 rounded bg-secondary-container text-primary material-symbols-outlined text-[20px]"
-                        >web</span
-                      >
-                      <h3
-                        class="font-headline-sm text-headline-sm text-primary"
-                      >
-                        Web &amp; Frontend
-                      </h3>
-                    </div>
-                    <span
-                      class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-outline font-bold"
-                      >Arayüz</span
-                    >
-                  </div>
-                  <div class="space-y-3.5">
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>HTML5 &amp; Modern CSS3</span>
-                        <span class="font-bold text-secondary">90%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-primary rounded-full"
-                          style="width: 90%"
-                        ></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>Bootstrap Framework</span>
-                        <span class="font-bold text-secondary">90%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-primary rounded-full"
-                          style="width: 90%"
-                        ></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>JavaScript (ES6+)</span>
-                        <span class="font-bold text-secondary">75%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-primary rounded-full"
-                          style="width: 75%"
-                        ></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>Responsive UI / UX Entegrasyonu</span>
-                        <span class="font-bold text-secondary">85%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-primary rounded-full"
-                          style="width: 85%"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="mt-space-md pt-3 border-t border-surface-container text-xs text-on-surface-variant flex flex-wrap gap-1.5"
-                >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >Razor Views</span
-                  >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >Tailwind CSS</span
-                  >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >DOM API</span
-                  >
-                </div>
-              </div>
-              <!-- Category 4: DevOps & Tools -->
-              <div
-                class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <div class="flex items-center justify-between mb-space-md">
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="p-2 rounded bg-secondary-container text-primary material-symbols-outlined text-[20px]"
-                        >construction</span
-                      >
-                      <h3
-                        class="font-headline-sm text-headline-sm text-primary"
-                      >
-                        Araçlar &amp; DevOps
-                      </h3>
-                    </div>
-                    <span
-                      class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-outline font-bold"
-                      >İş Akışı</span
-                    >
-                  </div>
-                  <div class="space-y-3.5">
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>Git &amp; GitHub Sürüm Kontrolü</span>
-                        <span class="font-bold text-secondary">85%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-tertiary-container rounded-full"
-                          style="width: 85%"
-                        ></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>Docker &amp; Containerization</span>
-                        <span class="font-bold text-secondary">70%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-tertiary-container rounded-full"
-                          style="width: 70%"
-                        ></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>Postman &amp; API Dokümantasyonu</span>
-                        <span class="font-bold text-secondary">85%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-tertiary-container rounded-full"
-                          style="width: 85%"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="mt-space-md pt-3 border-t border-surface-container text-xs text-on-surface-variant flex flex-wrap gap-1.5"
-                >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >Swagger / OpenAPI</span
-                  >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >VS 2022</span
-                  >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >CLI</span
-                  >
-                </div>
-              </div>
-              <!-- Category 5: Mobile & Next Generation Stack -->
-              <div
-                class="md:col-span-2 lg:col-span-2 bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <div class="flex items-center justify-between mb-space-md">
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="p-2 rounded bg-secondary-container text-primary material-symbols-outlined text-[20px]"
-                        >devices</span
-                      >
-                      <h3
-                        class="font-headline-sm text-headline-sm text-primary"
-                      >
-                        Mobil &amp; Modern Framework'ler
-                      </h3>
-                    </div>
-                    <span
-                      class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-secondary font-bold"
-                      >Genişletilmiş Stack</span
-                    >
-                  </div>
-                  <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>Flutter / Dart</span>
-                        <span class="font-bold text-secondary">70%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-primary-container rounded-full"
-                          style="width: 70%"
-                        ></div>
-                      </div>
-                      <p class="font-body-sm text-body-sm text-outline mt-1.5">
-                        Çapraz platform mobil arayüz geliştirme ve state
-                        yönetimi.
-                      </p>
-                    </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>Next.js / React</span>
-                        <span class="font-bold text-secondary">65%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-primary-container rounded-full"
-                          style="width: 65%"
-                        ></div>
-                      </div>
-                      <p class="font-body-sm text-body-sm text-outline mt-1.5">
-                        SSR tabanlı modern web ön yüzleri ve API entegrasyonu.
-                      </p>
-                    </div>
-                    <div>
-                      <div
-                        class="flex justify-between font-label-md text-label-md text-primary mb-1"
-                      >
-                        <span>React Native</span>
-                        <span class="font-bold text-secondary">60%</span>
-                      </div>
-                      <div
-                        class="w-full h-2 rounded-full bg-surface-container overflow-hidden"
-                      >
-                        <div
-                          class="h-full bg-primary-container rounded-full"
-                          style="width: 60%"
-                        ></div>
-                      </div>
-                      <p class="font-body-sm text-body-sm text-outline mt-1.5">
-                        Temel mobil bileşen geliştirme ve prototipleme.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="mt-space-md pt-3 border-t border-surface-container text-xs text-on-surface-variant flex flex-wrap gap-1.5"
-                >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >Redis</span
-                  >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >MinIO Object Storage</span
-                  >
-                  <span
-                    class="px-2 py-0.5 bg-surface-container rounded font-label-sm"
-                    >State Management</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+            }
+
+        </div>
+    </div>
+</section>

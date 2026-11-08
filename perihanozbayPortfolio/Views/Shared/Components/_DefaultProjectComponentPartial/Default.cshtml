@@ -1,366 +1,280 @@
-﻿ <section class="w-full py-space-xl bg-background" id="projeler">
-          <div class="max-w-[1240px] mx-auto px-margin-mobile md:px-margin">
-            <div
-              class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm"
-            >
-              <div>
-                <span
-                  class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold"
-                  >03 / Portfolyo · Mühendislik Çözümleri</span
-                >
-                <h2
-                  class="font-headline-lg text-headline-md md:text-headline-lg text-primary tracking-tight mt-1"
-                >
-                  Öne Çıkan Projeler
+﻿
+@model List<perihanozbayPortfolio.Entities.Project>
+
+@{
+    var totalProjects = Model.Count;
+
+    string[] SplitLines(string? value)
+    {
+        return string.IsNullOrWhiteSpace(value)
+            ? Array.Empty<string>()
+            : value.Split(
+                new[] { "\r\n", "\n", "\r" },
+                StringSplitOptions.RemoveEmptyEntries |
+                StringSplitOptions.TrimEntries
+            );
+    }
+}
+
+<section class="w-full py-space-xl bg-background" id="projeler">
+    <div class="max-w-[1240px] mx-auto px-margin-mobile md:px-margin">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+            <div>
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
+                    03 / Portfolyo · Mühendislik Çözümleri
+                </span>
+
+                <h2 class="font-headline-lg text-headline-md md:text-headline-lg text-primary tracking-tight mt-1">
+                    Öne Çıkan Projeler
                 </h2>
-              </div>
-              <a
-                class="inline-flex items-center gap-1 font-label-md text-label-md text-tertiary-container hover:text-tertiary transition-colors font-bold"
-                href="#"
-              >
-                <span>Tüm Projeleri Görüntüle (3)</span>
-                <span class="material-symbols-outlined text-[18px]"
-                  >arrow_forward</span
-                >
-              </a>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
-              <!-- PROJECT 1: İHBAR (Flagship Card, Spans 12 cols) -->
-              <div
-                class="lg:col-span-12 bg-surface-container-lowest rounded-xl shadow-md overflow-hidden grid grid-cols-1 lg:grid-cols-12 transition-all hover:shadow-xl"
-              >
-                <div
-                  class="lg:col-span-5 p-space-lg flex flex-col justify-between bg-surface-container-low"
-                >
-                  <div>
-                    <div class="flex items-center gap-2 mb-space-sm">
-                      <span
-                        class="px-2.5 py-1 rounded bg-secondary-container text-primary font-label-sm text-label-sm font-bold"
-                        >Web &amp; Mobil Platform</span
-                      >
-                      <span
-                        class="px-2.5 py-1 rounded bg-tertiary-fixed text-tertiary font-label-sm text-label-sm font-bold flex items-center gap-1"
-                      >
-                        <span
-                          class="w-1.5 h-1.5 rounded-full bg-tertiary-container"
-                        ></span>
-                        Geliştirme Aşamasında
-                      </span>
+
+            <span class="inline-flex items-center gap-1 font-label-md text-label-md text-tertiary-container font-bold">
+                <span>Görüntülenen Projeler (@totalProjects)</span>
+                <span class="material-symbols-outlined text-[18px]">
+                    arrow_forward
+                </span>
+            </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+
+            @foreach (var project in Model)
+            {
+                var features = SplitLines(project.Features);
+                var technologies = SplitLines(project.Technologies);
+
+                @if (project.IsWide)
+                {
+                    <!-- LARGE PROJECT CARD -->
+                    <div class="lg:col-span-12 bg-surface-container-lowest rounded-xl shadow-md overflow-hidden grid grid-cols-1 lg:grid-cols-12 transition-all hover:shadow-xl">
+
+                        <div class="lg:col-span-5 p-space-lg flex flex-col justify-between bg-surface-container-low">
+                            <div>
+                                <div class="flex items-center gap-2 mb-space-sm">
+                                    <span class="px-2.5 py-1 rounded bg-secondary-container text-primary font-label-sm text-label-sm font-bold">
+                                        @project.ProjectCategory.Name
+                                    </span>
+
+                                    @if (!string.IsNullOrWhiteSpace(project.Status))
+                                    {
+                                        <span class="px-2.5 py-1 rounded bg-tertiary-fixed text-tertiary font-label-sm text-label-sm font-bold flex items-center gap-1">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+                                            @project.Status
+                                        </span>
+                                    }
+                                </div>
+
+                                <h3 class="font-headline-lg text-headline-md md:text-headline-lg text-primary font-bold tracking-tight mb-space-xs">
+                                    @project.Title
+                                </h3>
+
+                                <p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+                                    @project.Description
+                                </p>
+
+                                @if (features.Length > 0)
+                                {
+                                    <div class="space-y-2 mb-space-md">
+                                        @foreach (var feature in features)
+                                        {
+                                            <div class="flex items-center gap-2 text-sm text-on-surface">
+                                                <span class="material-symbols-outlined text-secondary text-[18px]">
+                                                    check_circle
+                                                </span>
+                                                <span>@feature</span>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+
+                            <div>
+                                @if (technologies.Length > 0)
+                                {
+                                    <div class="flex flex-wrap gap-1.5 mb-space-md">
+                                        @foreach (var technology in technologies)
+                                        {
+                                            <span class="px-2 py-1 rounded bg-surface-container-highest text-primary font-label-sm text-label-sm">
+                                                @technology
+                                            </span>
+                                        }
+                                    </div>
+                                }
+
+                                <div class="flex items-center gap-space-sm pt-2">
+                                    @if (!string.IsNullOrWhiteSpace(project.DemoUrl))
+                                    {
+                                        <a class="px-4 py-2 rounded-lg bg-tertiary-container hover:bg-tertiary text-surface-container-lowest font-label-md text-label-md transition-all shadow-sm flex items-center gap-1.5"
+                                           href="@project.DemoUrl"
+                                           target="_blank"
+                                           rel="noopener noreferrer">
+                                            <span>Demoyu Gör</span>
+                                            <span class="material-symbols-outlined text-[16px]">
+                                                visibility
+                                            </span>
+                                        </a>
+                                    }
+
+                                    @if (!string.IsNullOrWhiteSpace(project.GithubUrl))
+                                    {
+                                        <a class="px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-highest text-primary font-label-md text-label-md transition-all flex items-center gap-1.5"
+                                           href="@project.GithubUrl"
+                                           rel="noopener noreferrer"
+                                           target="_blank">
+                                            <span class="material-symbols-outlined text-[16px]">
+                                                code
+                                            </span>
+                                            <span>GitHub Deposu</span>
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7 bg-surface-container-highest relative min-h-[340px] flex items-center justify-center p-space-md">
+                            <div class="w-full h-full rounded-lg overflow-hidden relative shadow-inner">
+
+                                @if (!string.IsNullOrWhiteSpace(project.ImageUrl))
+                                {
+                                    <img class="w-full h-full object-cover"
+                                         src="@project.ImageUrl"
+                                         alt="@project.Title proje görseli" />
+
+                                    <div class="absolute inset-0 bg-primary/20 backdrop-blur-[1px]"></div>
+                                }
+                                else
+                                {
+                                    <div class="w-full h-full min-h-[340px] flex flex-col items-center justify-center gap-3 bg-surface-container-highest text-primary">
+                                        <span class="material-symbols-outlined text-[64px] text-secondary">
+                                            deployed_code
+                                        </span>
+                                        <span class="font-headline-sm text-headline-sm font-bold text-center px-4">
+                                            @project.Title
+                                        </span>
+                                        <span class="font-body-sm text-body-sm text-on-surface-variant">
+                                            @project.ProjectCategory.Name
+                                        </span>
+                                    </div>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(project.CodeSnippet))
+                                {
+                                    <div class="absolute bottom-4 right-4 max-w-sm bg-inverse-surface/90 text-inverse-on-surface p-3 rounded-lg shadow-xl font-mono text-xs backdrop-blur-sm hidden sm:block">
+                                        <div class="flex items-center justify-between pb-1 mb-1 border-b border-surface-container-highest/20 text-on-primary-container">
+                                            <span>@project.CodeFileName</span>
+                                            <span class="text-[10px] text-secondary-fixed">
+                                                @project.CodeLanguage
+                                            </span>
+                                        </div>
+
+                                        <pre class="text-surface-container-lowest leading-relaxed whitespace-pre-wrap break-words"><code>@project.CodeSnippet</code></pre>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
                     </div>
-                    <h3
-                      class="font-headline-lg text-headline-md md:text-headline-lg text-primary font-bold tracking-tight mb-space-xs"
-                    >
-                      İHBAR
-                    </h3>
-                    <p
-                      class="font-body-md text-body-md text-on-surface-variant mb-space-md"
-                    >
-                      Dijital haber ihbar ve doğrulanabilir içerik akış
-                      platformu. Vatandaş gazeteciliği ile doğrulama
-                      mekanizmalarını buluşturan, yüksek trafik dayanımlı
-                      mikroservis mimarisi.
-                    </p>
-                    <div class="space-y-2 mb-space-md">
-                      <div
-                        class="flex items-center gap-2 text-sm text-on-surface"
-                      >
-                        <span
-                          class="material-symbols-outlined text-secondary text-[18px]"
-                          >check_circle</span
-                        >
-                        <span
-                          >.NET 8 Web API ile decoupled backend servisi</span
-                        >
-                      </div>
-                      <div
-                        class="flex items-center gap-2 text-sm text-on-surface"
-                      >
-                        <span
-                          class="material-symbols-outlined text-secondary text-[18px]"
-                          >check_circle</span
-                        >
-                        <span
-                          >PostgreSQL ilişkisel şema ve Redis önbellekleme</span
-                        >
-                      </div>
-                      <div
-                        class="flex items-center gap-2 text-sm text-on-surface"
-                      >
-                        <span
-                          class="material-symbols-outlined text-secondary text-[18px]"
-                          >check_circle</span
-                        >
-                        <span
-                          >MinIO nesne depolama ile güvenli medya aktarımı</span
-                        >
-                      </div>
+                }
+                else
+                {
+                    <!-- STANDARD PROJECT CARD -->
+                    <div class="lg:col-span-6 bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col justify-between transition-all hover:shadow-xl">
+
+                        <div>
+                            <div class="flex items-center gap-2 mb-space-sm">
+                                <span class="px-2.5 py-1 rounded bg-secondary-container text-primary font-label-sm text-label-sm font-bold">
+                                    @project.ProjectCategory.Name
+                                </span>
+
+                                @if (!string.IsNullOrWhiteSpace(project.Status))
+                                {
+                                    <span class="px-2.5 py-1 rounded bg-surface-container text-outline font-label-sm text-label-sm font-bold">
+                                        @project.Status
+                                    </span>
+                                }
+                            </div>
+
+                            <h3 class="font-headline-md text-headline-sm md:text-headline-md text-primary font-bold tracking-tight mb-space-xs">
+                                @project.Title
+                            </h3>
+
+                            <p class="font-body-md text-body-sm md:text-body-md text-on-surface-variant mb-space-md">
+                                @project.Description
+                            </p>
+
+                            @if (features.Length > 0)
+                            {
+                                <div class="bg-surface-container-low p-3 rounded-lg mb-space-md space-y-1 text-sm text-on-surface">
+                                    @foreach (var feature in features)
+                                    {
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-secondary text-[18px]">
+                                                check_circle
+                                            </span>
+                                            <span>@feature</span>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+
+                        <div>
+                            @if (technologies.Length > 0)
+                            {
+                                <div class="flex flex-wrap gap-1.5 mb-space-md">
+                                    @foreach (var technology in technologies)
+                                    {
+                                        <span class="px-2 py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm">
+                                            @technology
+                                        </span>
+                                    }
+                                </div>
+                            }
+
+                            <div class="flex items-center gap-space-sm pt-2">
+
+                                @if (!string.IsNullOrWhiteSpace(project.DemoUrl))
+                                {
+                                    <a class="px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md transition-all hover:bg-primary shadow-sm flex items-center gap-1.5"
+                                       href="@project.DemoUrl"
+                                       target="_blank"
+                                       rel="noopener noreferrer">
+                                        <span>Demoyu Gör</span>
+                                        <span class="material-symbols-outlined text-[16px]">
+                                            visibility
+                                        </span>
+                                    </a>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(project.GithubUrl))
+                                {
+                                    <a class="px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-highest text-primary font-label-md text-label-md transition-all flex items-center gap-1.5"
+                                       href="@project.GithubUrl"
+                                       rel="noopener noreferrer"
+                                       target="_blank">
+                                        <span class="material-symbols-outlined text-[16px]">
+                                            code
+                                        </span>
+                                        <span>GitHub Repo</span>
+                                    </a>
+                                }
+
+                                @if (string.IsNullOrWhiteSpace(project.DemoUrl)
+                                    && string.IsNullOrWhiteSpace(project.GithubUrl))
+                                {
+                                    <span class="text-xs text-outline font-label-sm">
+                                        @project.Status
+                                    </span>
+                                }
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="flex flex-wrap gap-1.5 mb-space-md">
-                      <span
-                        class="px-2 py-1 rounded bg-surface-container-highest text-primary font-label-sm text-label-sm"
-                        >.NET 8 Web API</span
-                      >
-                      <span
-                        class="px-2 py-1 rounded bg-surface-container-highest text-primary font-label-sm text-label-sm"
-                        >Flutter</span
-                      >
-                      <span
-                        class="px-2 py-1 rounded bg-surface-container-highest text-primary font-label-sm text-label-sm"
-                        >Next.js</span
-                      >
-                      <span
-                        class="px-2 py-1 rounded bg-surface-container-highest text-primary font-label-sm text-label-sm"
-                        >PostgreSQL</span
-                      >
-                      <span
-                        class="px-2 py-1 rounded bg-surface-container-highest text-primary font-label-sm text-label-sm"
-                        >Redis</span
-                      >
-                      <span
-                        class="px-2 py-1 rounded bg-surface-container-highest text-primary font-label-sm text-label-sm"
-                        >MinIO</span
-                      >
-                    </div>
-                    <div class="flex items-center gap-space-sm pt-2">
-                      <a
-                        class="px-4 py-2 rounded-lg bg-tertiary-container hover:bg-tertiary text-surface-container-lowest font-label-md text-label-md transition-all shadow-sm flex items-center gap-1.5"
-                        href="#"
-                      >
-                        <span>Detayları Gör</span>
-                        <span class="material-symbols-outlined text-[16px]"
-                          >visibility</span
-                        >
-                      </a>
-                      <a
-                        class="px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-highest text-primary font-label-md text-label-md transition-all flex items-center gap-1.5"
-                        href="https://github.com"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        <span class="material-symbols-outlined text-[16px]"
-                          >code</span
-                        >
-                        <span>GitHub Deposu</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="lg:col-span-7 bg-surface-container-highest relative min-h-[340px] flex items-center justify-center p-space-md"
-                >
-                  <div
-                    class="w-full h-full rounded-lg overflow-hidden relative shadow-inner"
-                  >
-                    <img
-                      class="w-full h-full object-cover"
-                      data-alt="Technical dashboard UI and mobile mockups for IHBAR platform, showing news verification feed, live incident reporting stream with Scandinavian minimalist dark forest green and beige interface, cleanly organized data cards, metrics, and high resolution visual interface"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwmNn65v-rFR6NXDazu3mU2-1Ks_beziZLIknqkGL9wz3K6fpN9WZiiKTtAl_7yk0Km-6UCDa0cgFdaym-Y5pJ3370W9eKSoSz3ckYBKjreOh-p_FKrSZuA3rPFZfbnfPVFoH83c4YCAFzsbYHorZV8C6BHMs80Pmz10szcnAQQ21DBzAXXouWkwUuUfEUz1DxbX6BD23SmJ6MKoIOzo2AurR6_ssJWdIZAZMDSKE"
-                    />
-                    <div
-                      class="absolute inset-0 bg-primary/20 backdrop-blur-[1px]"
-                    ></div>
-                    <!-- Code overlay card -->
-                    <div
-                      class="absolute bottom-4 right-4 max-w-sm bg-inverse-surface/90 text-inverse-on-surface p-3 rounded-lg shadow-xl font-mono text-xs backdrop-blur-sm hidden sm:block"
-                    >
-                      <div
-                        class="flex items-center justify-between pb-1 mb-1 border-b border-surface-container-highest/20 text-on-primary-container"
-                      >
-                        <span>IhbarVerificationService.cs</span>
-                        <span class="text-[10px] text-secondary-fixed"
-                          >C# / async</span
-                        >
-                      </div>
-                      <p class="text-surface-container-lowest leading-relaxed">
-                        <span class="text-tertiary-fixed-dim">await</span>
-                        _mediator.Send(<span class="text-secondary-fixed"
-                          >new</span
-                        >
-                        ValidateReportCommand(id));<br />
-                        <span class="text-on-primary-container"
-                          >// Real-time Redis dispatch</span
-                        >
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- PROJECT 2: PORTFOLIO MVC (Spans 6 cols) -->
-              <div
-                class="lg:col-span-6 bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col justify-between transition-all hover:shadow-xl"
-              >
-                <div>
-                  <div class="flex items-center gap-2 mb-space-sm">
-                    <span
-                      class="px-2.5 py-1 rounded bg-secondary-container text-primary font-label-sm text-label-sm font-bold"
-                      >Backend &amp; Web Mimarisi</span
-                    >
-                    <span
-                      class="px-2.5 py-1 rounded bg-surface-container text-outline font-label-sm text-label-sm font-bold"
-                      >Vaka Projesi</span
-                    >
-                  </div>
-                  <h3
-                    class="font-headline-md text-headline-sm md:text-headline-md text-primary font-bold tracking-tight mb-space-xs"
-                  >
-                    Portfolio MVC
-                  </h3>
-                  <p
-                    class="font-body-md text-body-sm md:text-body-md text-on-surface-variant mb-space-md"
-                  >
-                    ASP.NET Core MVC, Entity Framework Core ve Microsoft SQL
-                    Server tabanlı dinamik yönetilebilir portfolyo ve kurumsal
-                    içerik mimarisi. Admin paneli, rol bazlı yetkilendirme ve
-                    modüler partial view sistemi.
-                  </p>
-                  <div
-                    class="bg-surface-container-low p-3 rounded-lg mb-space-md space-y-1 text-sm text-on-surface"
-                  >
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="material-symbols-outlined text-secondary text-[18px]"
-                        >layers</span
-                      >
-                      <span>N-Tier Katmanlı Mimari (Data, Business, UI)</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="material-symbols-outlined text-secondary text-[18px]"
-                        >shield</span
-                      >
-                      <span>Code-First Migrations &amp; Fluent Validation</span>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex flex-wrap gap-1.5 mb-space-md">
-                    <span
-                      class="px-2 py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm"
-                      >ASP.NET Core MVC</span
-                    >
-                    <span
-                      class="px-2 py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm"
-                      >EF Core</span
-                    >
-                    <span
-                      class="px-2 py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm"
-                      >MS SQL Server</span
-                    >
-                    <span
-                      class="px-2 py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm"
-                      >Bootstrap 5</span
-                    >
-                  </div>
-                  <div class="flex items-center gap-space-sm pt-2">
-                    <a
-                      class="px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md transition-all hover:bg-primary shadow-sm flex items-center gap-1.5"
-                      href="#"
-                    >
-                      <span>Detayları Gör</span>
-                      <span class="material-symbols-outlined text-[16px]"
-                        >visibility</span
-                      >
-                    </a>
-                    <a
-                      class="px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-highest text-primary font-label-md text-label-md transition-all flex items-center gap-1.5"
-                      href="https://github.com"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <span class="material-symbols-outlined text-[16px]"
-                        >code</span
-                      >
-                      <span>GitHub Repo</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <!-- PROJECT 3: Kurumsal Süreç & Raporlama Modülü (Spans 6 cols) -->
-              <div
-                class="lg:col-span-6 bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col justify-between transition-all hover:shadow-xl"
-              >
-                <div>
-                  <div class="flex items-center gap-2 mb-space-sm">
-                    <span
-                      class="px-2.5 py-1 rounded bg-secondary-container text-primary font-label-sm text-label-sm font-bold"
-                      >Backend · DB Servisi</span
-                    >
-                    <span
-                      class="px-2.5 py-1 rounded bg-surface-container text-outline font-label-sm text-label-sm font-bold"
-                      >Planlanan Modül</span
-                    >
-                  </div>
-                  <h3
-                    class="font-headline-md text-headline-sm md:text-headline-md text-primary font-bold tracking-tight mb-space-xs"
-                  >
-                    Kurumsal Süreç &amp; Raporlama Modülü
-                  </h3>
-                  <p
-                    class="font-body-md text-body-sm md:text-body-md text-on-surface-variant mb-space-md"
-                  >
-                    Şirket içi operasyonel iş akışları ve muhasebe veri
-                    senkronizasyonu için tasarlanan RESTful servis prototipi.
-                    Otomatik mutabakat raporları, excel dışa aktarımı ve audit
-                    logging entegrasyonu.
-                  </p>
-                  <div
-                    class="bg-surface-container-low p-3 rounded-lg mb-space-md space-y-1 text-sm text-on-surface"
-                  >
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="material-symbols-outlined text-secondary text-[18px]"
-                        >table_view</span
-                      >
-                      <span
-                        >Muhasebe veri şemaları &amp; Otomatik Raporlama</span
-                      >
-                    </div>
-                    <div class="flex items-center gap-2">
-                      <span
-                        class="material-symbols-outlined text-secondary text-[18px]"
-                        >sync_alt</span
-                      >
-                      <span>REST API aracılığıyla ERP Entegrasyon Mantığı</span>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex flex-wrap gap-1.5 mb-space-md">
-                    <span
-                      class="px-2 py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm"
-                      >C#</span
-                    >
-                    <span
-                      class="px-2 py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm"
-                      >.NET Web API</span
-                    >
-                    <span
-                      class="px-2 py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm"
-                      >Dapper / EF Core</span
-                    >
-                    <span
-                      class="px-2 py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm"
-                      >SQL Server</span
-                    >
-                  </div>
-                  <div class="flex items-center gap-space-sm pt-2">
-                    <a
-                      class="px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md transition-all hover:bg-primary shadow-sm flex items-center gap-1.5"
-                      href="#"
-                    >
-                      <span>Mimari İncele</span>
-                      <span class="material-symbols-outlined text-[16px]"
-                        >account_tree</span
-                      >
-                    </a>
-                    <span class="text-xs text-outline font-label-sm"
-                      >Ar-Ge Aşaması</span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+                }
+            }
+
+        </div>
+    </div>
+</section>
