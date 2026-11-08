@@ -1,0 +1,665 @@
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="flex flex-col w-full">
+<div class="p-8 max-w-[1440px] mx-auto w-full space-y-8">
+<!-- Greeting & Command Header -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+<div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none"></div>
+<div class="space-y-3 z-10">
+<div class="flex flex-wrap items-center gap-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary">calendar_today</span>
+            15 Mart 2025, Cuma
+          </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-sm font-label-sm bg-secondary-container/50 text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            SQL Server &amp; EF Core 8.0 Aktif
+          </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-sm font-label-sm bg-surface-container-high text-on-surface-variant font-data-mono text-data-mono">
+            v2.4.1-prod
+          </span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight font-medium">
+          Hoş geldin, <span class="italic font-display-lg">Perihan</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+          Portfolyonun güncel performans ve içerik durumunu buradan takip edebilir, ziyaretçi taleplerini yanıtlayabilirsin.
+        </p>
+</div>
+<div class="flex flex-wrap items-center gap-3 z-10 shrink-0">
+<a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-surface-container-low text-primary hover:bg-surface-container text-label-md font-label-md transition-colors shadow-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+<span>Portfolyoyu Aç</span>
+</a>
+<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary-container text-on-primary hover:bg-primary text-label-md font-label-md transition-all shadow-sm hover:-translate-y-0.5" id="quickAddProjectBtn">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>Yeni Proje Ekle</span>
+</button>
+</div>
+</div>
+<!-- 4-Column EF Core Metric Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+<!-- Metric 1: Projects -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Toplam Proje</p>
+<h3 class="font-display-lg text-display-lg text-primary font-semibold mt-1">14</h3>
+</div>
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">folder_special</span>
+</div>
+</div>
+<div class="mt-4 pt-4 bg-surface-container-low -mx-6 -mb-6 px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary-container text-secondary font-medium">12 Aktif</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant font-medium">2 Taslak</span>
+</div>
+<span class="font-data-mono text-data-mono text-outline">+2 bu ay</span>
+</div>
+</div>
+<!-- Metric 2: Skills -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Teknik Yetenekler</p>
+<h3 class="font-display-lg text-display-lg text-primary font-semibold mt-1">28</h3>
+</div>
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[24px]">bolt</span>
+</div>
+</div>
+<div class="mt-4 pt-4 bg-surface-container-low -mx-6 -mb-6 px-6 py-3 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">4 Ana Kategori matrisi</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> 100% Eşleşme
+          </span>
+</div>
+</div>
+<!-- Metric 3: Experience & Education -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Deneyim &amp; Eğitim</p>
+<div class="flex items-baseline gap-2 mt-1">
+<h3 class="font-display-lg text-display-lg text-primary font-semibold">6</h3>
+<span class="text-outline font-title-lg text-title-lg">/</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant font-medium">3</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">work_history</span>
+</div>
+</div>
+<div class="mt-4 pt-4 bg-surface-container-low -mx-6 -mb-6 px-6 py-3 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Son güncelleme</span>
+<span class="font-data-mono text-data-mono text-outline">2 hafta önce</span>
+</div>
+</div>
+<!-- Metric 4: Messages -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Gelen Mesajlar</p>
+<h3 class="font-display-lg text-display-lg text-primary font-semibold mt-1">19</h3>
+</div>
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary-container group-hover:bg-tertiary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">mark_email_unread</span>
+</div>
+</div>
+<div class="mt-4 pt-4 bg-surface-container-low -mx-6 -mb-6 px-6 py-3 flex items-center justify-between">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-tertiary-container text-on-tertiary-container font-semibold">
+            3 Okunmamış Yeni
+          </span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Ort. Yanıt: 4s</span>
+</div>
+</div>
+</div>
+<!-- Main Workspace Split Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- LEFT COLUMN: 8 Columns -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Table Card: Recent Inquiries -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-6 bg-surface-container-lowest flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[24px]">inbox</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Son Gelen Mesajlar</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Portfolyo iletişim formundan gelen son talepler</p>
+</div>
+</div>
+<a class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md transition-colors" href="#">
+<span>Tümünü Gör (19)</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-6">Gönderen</th>
+<th class="py-3 px-6">Konu Özeti</th>
+<th class="py-3 px-4">Tarih</th>
+<th class="py-3 px-4">Durum</th>
+<th class="py-3 px-6 text-right">İşlemler</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-body-md font-body-md">
+<!-- Row 1 (Unread) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-low/20">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-tertiary-fixed text-tertiary font-label-md text-label-md flex items-center justify-center font-semibold">
+                        SY
+                      </div>
+<div class="min-w-0">
+<p class="font-title-md text-title-md text-on-surface font-semibold truncate">Selin Yılmaz</p>
+<p class="font-body-sm text-body-sm text-outline truncate">TechLead @ Finova</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 max-w-xs">
+<p class="text-on-surface font-medium truncate">Yeni Fintech Projesi için Danışmanlık</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Mikroservis mimarisi ve .NET API tasarımı hakkında görüşmek...</p>
+</td>
+<td class="py-4 px-4 font-data-mono text-data-mono text-on-surface-variant whitespace-nowrap">
+                    14 Mar 2025
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-tertiary-container text-on-tertiary-container font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span>
+                      Yeni / Okunmadı
+                    </span>
+</td>
+<td class="py-4 px-6 text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-primary hover:bg-surface-container rounded-lg transition-colors" onclick="openMessageDetail('Selin Yılmaz', 'Yeni Fintech Projesi için Danışmanlık', 'Mikroservis mimarisi ve .NET API tasarımı hakkında görüşmek istiyoruz.', '14 Mar 2025')" title="Görüntüle">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-2 text-error hover:bg-error-container/40 rounded-lg transition-colors" title="Sil">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-secondary-container text-secondary font-label-md text-label-md flex items-center justify-center font-semibold">
+                        ED
+                      </div>
+<div class="min-w-0">
+<p class="font-title-md text-title-md text-on-surface font-semibold truncate">Emre Demir</p>
+<p class="font-body-sm text-body-sm text-outline truncate">HR Specialist</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 max-w-xs">
+<p class="text-on-surface truncate">Full-Stack .NET Pozisyonu Hakkında</p>
+<p class="font-body-sm text-body-sm text-outline truncate">Ekibimizde kıdemli geliştirici pozisyonumuz için portfolyonuzu...</p>
+</td>
+<td class="py-4 px-4 font-data-mono text-data-mono text-on-surface-variant whitespace-nowrap">
+                    13 Mar 2025
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-medium">
+                      Okundu
+                    </span>
+</td>
+<td class="py-4 px-6 text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-primary hover:bg-surface-container rounded-lg transition-colors" onclick="openMessageDetail('Emre Demir', 'Full-Stack .NET Pozisyonu Hakkında', 'Ekibimizde kıdemli geliştirici pozisyonumuz için portfolyonuzu inceledik...', '13 Mar 2025')" title="Görüntüle">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-2 text-outline hover:text-error hover:bg-surface-container rounded-lg transition-colors" title="Sil">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md flex items-center justify-center font-semibold">
+                        AK
+                      </div>
+<div class="min-w-0">
+<p class="font-title-md text-title-md text-on-surface font-semibold truncate">Ayşe Kaya</p>
+<p class="font-body-sm text-body-sm text-outline truncate">Senior Product Designer</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 max-w-xs">
+<p class="text-on-surface truncate">Tasarım Sistemi &amp; UI İncelemesi</p>
+<p class="font-body-sm text-body-sm text-outline truncate">Aura Design System vaka çalışmanızdaki token mimarisi harika...</p>
+</td>
+<td class="py-4 px-4 font-data-mono text-data-mono text-on-surface-variant whitespace-nowrap">
+                    11 Mar 2025
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-medium">
+                      Okundu
+                    </span>
+</td>
+<td class="py-4 px-6 text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-primary hover:bg-surface-container rounded-lg transition-colors" onclick="openMessageDetail('Ayşe Kaya', 'Tasarım Sistemi &amp; UI İncelemesi', 'Aura Design System vaka çalışmanızdaki token mimarisi harika...', '11 Mar 2025')" title="Görüntüle">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-2 text-outline hover:text-error hover:bg-surface-container rounded-lg transition-colors" title="Sil">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 (Answered) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed text-primary font-label-md text-label-md flex items-center justify-center font-semibold">
+                        MÖ
+                      </div>
+<div class="min-w-0">
+<p class="font-title-md text-title-md text-on-surface font-semibold truncate">Murat Öztürk</p>
+<p class="font-body-sm text-body-sm text-outline truncate">Kurucu @ StudioNov</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 max-w-xs">
+<p class="text-on-surface truncate">Kurumsal Web Sitesi Yenileme</p>
+<p class="font-body-sm text-body-sm text-outline truncate">Ajans sitemizi modernize etmek istiyoruz. Teklif alabilir miyiz?</p>
+</td>
+<td class="py-4 px-4 font-data-mono text-data-mono text-on-surface-variant whitespace-nowrap">
+                    08 Mar 2025
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-secondary-container/80 text-secondary font-medium">
+<span class="material-symbols-outlined text-[14px]">reply</span>
+                      Cevaplandı
+                    </span>
+</td>
+<td class="py-4 px-6 text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-primary hover:bg-surface-container rounded-lg transition-colors" onclick="openMessageDetail('Murat Öztürk', 'Kurumsal Web Sitesi Yenileme', 'Ajans sitemizi modernize etmek istiyoruz. Teklif alabilir miyiz?', '08 Mar 2025')" title="Görüntüle">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-2 text-outline hover:text-error hover:bg-surface-container rounded-lg transition-colors" title="Sil">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center justify-center font-semibold">
+                        DA
+                      </div>
+<div class="min-w-0">
+<p class="font-title-md text-title-md text-on-surface font-semibold truncate">Deniz Acar</p>
+<p class="font-body-sm text-body-sm text-outline truncate">Junior Geliştirici</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 max-w-xs">
+<p class="text-on-surface truncate">Mentörlük Talebi</p>
+<p class="font-body-sm text-body-sm text-outline truncate">.NET ekosisteminde kariyer başlangıcı için rehberliğinize...</p>
+</td>
+<td class="py-4 px-4 font-data-mono text-data-mono text-on-surface-variant whitespace-nowrap">
+                    05 Mar 2025
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-medium">
+                      Okundu
+                    </span>
+</td>
+<td class="py-4 px-6 text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-primary hover:bg-surface-container rounded-lg transition-colors" onclick="openMessageDetail('Deniz Acar', 'Mentörlük Talebi', '.NET ekosisteminde kariyer başlangıcı için rehberliğinize ihtiyacım var...', '05 Mar 2025')" title="Görüntüle">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-2 text-outline hover:text-error hover:bg-surface-container rounded-lg transition-colors" title="Sil">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Project Cards: Recently Added Projects -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[24px]">layers</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Son Eklenen Projeler</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Portfolyoda öne çıkan ve yakın zamanda düzenlenen çalışmalar</p>
+</div>
+</div>
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md transition-colors" href="#">
+<span>Tüm Projeler (14)</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Project 1 -->
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col justify-between hover:shadow-md transition-all group">
+<div class="space-y-3">
+<div class="relative h-32 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Modern dark emerald green fintech dashboard interface with sleek financial analytics graphs and minimal typography in warm cream studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv1nuBCprJ8gmuYPN0imgj_79-I3SNbrmG8zGAHsut_W2aGjJGAcHhEQqLU3GNiNaiHJU6gti_Y1IMPIIPA1pBrETs0u3OPStwRzuKf9VOC6vfg6NuLxqjo5IPpKP6y6fAw9nb_MXIEjmI82plzrwYFNxDhSqEmdG1_fUoNQ2mxzV21R1sVjMaBWZpoEx6tqhNzTHweI0v_I85qPjeT1FG-pMZ8sfDJCOsIEldvr4"/>
+<span class="absolute top-2 right-2 px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary-container text-secondary font-semibold">
+                    Aktif
+                  </span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Finans &amp; SaaS</span>
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold mt-0.5">FinFlow Dashboard</h3>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface text-label-sm font-label-sm">C#</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface text-label-sm font-label-sm">ASP.NET Core</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface text-label-sm font-label-sm">EF Core</span>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between">
+<button class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary hover:text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">edit</span> Düzenle
+                </button>
+<button class="inline-flex items-center gap-1 font-label-sm text-label-sm text-outline hover:text-primary">
+<span class="material-symbols-outlined text-[16px]">visibility</span> Önizle
+                </button>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col justify-between hover:shadow-md transition-all group">
+<div class="space-y-3">
+<div class="relative h-32 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Artisanal ceramic craftsmanship brand e-commerce storefront with minimalist aesthetic beige warm neutral tones and elegant serif brand headings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6B2PR7cjuCrHySkd-7_TRfrzh29TYTTr-WsswxHFZS-70GDz3HsuGyNb6C1ps8VRfzjNVG9tcmnjgv4xC3OTHuFHxXOBUp6yhjKM1EhcIG5uZX_ktmNDyoTYfF6xzmhzrPG0eBPKBUit0kMw3P3DrvmPeY_aND5y3hmUheLw-zitGX30wzwOFhYTuKLm6nBSo22avpbBo5sC4OC2J3hprSaVSfxNNZ1gTtDdZ-6g"/>
+<span class="absolute top-2 right-2 px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary-container text-secondary font-semibold">
+                    Aktif
+                  </span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider">E-Ticaret</span>
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold mt-0.5">Artisan E-Commerce</h3>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface text-label-sm font-label-sm">React</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface text-label-sm font-label-sm">.NET Core</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface text-label-sm font-label-sm">SQL Server</span>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between">
+<button class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary hover:text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">edit</span> Düzenle
+                </button>
+<button class="inline-flex items-center gap-1 font-label-sm text-label-sm text-outline hover:text-primary">
+<span class="material-symbols-outlined text-[16px]">visibility</span> Önizle
+                </button>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col justify-between hover:shadow-md transition-all group">
+<div class="space-y-3">
+<div class="relative h-32 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Modular design system component library layout with typography scales color swatches and button variants on clean muted paper surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYVuFssig3gGlg7fJWjOC7lbA_Rx0PB-7iNgU46t9RStP-eyhvC7dvRc687tLc53FkJVZSHhXr2ZAHMGPDDeatZJwibPhD0m0JKV_iTHDtsvugpG-2YrAtG8av0cJJa7aFGYG7qzb5eNGtR3Np18N9rhpXkKkETbQkNj6QwzajehtdDubrj--45AaL0ZLziKpf8V26xmn8deECmNdyIK1t5BGogC-bO-9ukJkAg2o"/>
+<span class="absolute top-2 right-2 px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant font-semibold">
+                    Taslak
+                  </span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider">UI/UX &amp; Kütüphane</span>
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold mt-0.5">Aura Design System</h3>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface text-label-sm font-label-sm">Figma</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface text-label-sm font-label-sm">Tailwind</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface text-label-sm font-label-sm">Storybook</span>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between">
+<button class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary hover:text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">edit</span> Düzenle
+                </button>
+<button class="inline-flex items-center gap-1 font-label-sm text-label-sm text-outline hover:text-primary">
+<span class="material-symbols-outlined text-[16px]">visibility</span> Önizle
+                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: 4 Columns -->
+<div class="lg:col-span-4 space-y-8">
+<!-- Category Breakdown Card with Visual SVG Chart -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Kategori Dağılımı</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Yayınlanmış 14 projenin uzmanlık alanları</p>
+</div>
+<span class="material-symbols-outlined text-outline">pie_chart</span>
+</div>
+<!-- Donut SVG Visualization -->
+<div class="flex items-center justify-center py-2 relative">
+<svg class="w-44 h-44 -rotate-90 transform" viewbox="0 0 120 120">
+<circle cx="60" cy="60" fill="none" r="48" stroke="#f1eee5" stroke-width="14"></circle>
+<!-- Web App: 42% -> 301.6 total circumference -> 126.6 offset -->
+<circle cx="60" cy="60" fill="none" r="48" stroke="#1f3b32" stroke-dasharray="301.6" stroke-dashoffset="175" stroke-linecap="round" stroke-width="14"></circle>
+<!-- Mobile & API: 28% -> 84.4 length -->
+<circle cx="60" cy="60" fill="none" r="48" stroke="#44664b" stroke-dasharray="301.6" stroke-dashoffset="217" stroke-width="14" transform="rotate(151 60 60)"></circle>
+<!-- UI/UX: 21% -> 63.3 length -->
+<circle cx="60" cy="60" fill="none" r="48" stroke="#caeadc" stroke-dasharray="301.6" stroke-dashoffset="238" stroke-width="14" transform="rotate(252 60 60)"></circle>
+<!-- Open Source: 9% -> 27.1 length -->
+<circle cx="60" cy="60" fill="none" r="48" stroke="#612106" stroke-dasharray="301.6" stroke-dashoffset="274" stroke-width="14" transform="rotate(328 60 60)"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-display-lg text-display-lg text-primary font-bold leading-none">14</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-1">Toplam</span>
+</div>
+</div>
+<!-- Breakdown List -->
+<div class="space-y-3 font-body-sm text-body-sm">
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-primary-container shrink-0"></span>
+<span class="text-on-surface font-medium">Web Uygulamaları</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-data-mono text-outline">6 proje</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">42%</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-secondary shrink-0"></span>
+<span class="text-on-surface font-medium">Mobil &amp; API Sistemleri</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-data-mono text-outline">4 proje</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">28%</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-primary-fixed shrink-0"></span>
+<span class="text-on-surface font-medium">UI/UX &amp; Tasarım</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-data-mono text-outline">3 proje</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">21%</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-tertiary-container shrink-0"></span>
+<span class="text-on-surface font-medium">Açık Kaynak Kütüphane</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-data-mono text-data-mono text-outline">1 proje</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">9%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions & Shortcuts -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">bolt</span>
+<h2 class="font-title-lg text-title-lg text-on-surface font-semibold">Hızlı İşlemler</h2>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex flex-col items-start gap-2 p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-colors group">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Yeni Proje</p>
+<p class="font-body-sm text-body-sm text-outline">İçerik ekle</p>
+</div>
+</button>
+<button class="flex flex-col items-start gap-2 p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-colors group">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">mark_email_read</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Mesajlar</p>
+<p class="font-body-sm text-body-sm text-outline">3 yeni ileti</p>
+</div>
+</button>
+<button class="flex flex-col items-start gap-2 p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-colors group">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">upload_file</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">CV Güncelle</p>
+<p class="font-body-sm text-body-sm text-outline">PDF yükle</p>
+</div>
+</button>
+<button class="flex flex-col items-start gap-2 p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-colors group" id="clearCacheBtn">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" id="cacheIcon">cached</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Önbellek</p>
+<p class="font-body-sm text-body-sm text-outline" id="cacheText">Temizle &amp; Yenile</p>
+</div>
+</button>
+</div>
+</div>
+<!-- Live Sync & Deploy Status Inspector -->
+<div class="bg-surface-container-low rounded-xl p-6 shadow-sm space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">cloud_done</span>
+<h2 class="font-title-lg text-title-lg text-on-surface font-semibold">Canlı Portfolyo</h2>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary ring-4 ring-secondary-container/50"></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            ASP.NET Core Razor Pages ve IIS Production ortamı senkronize çalışıyor. Statik dosyalar optimize edildi.
+          </p>
+<div class="p-3.5 rounded-lg bg-surface-container-lowest space-y-2.5">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-outline">Son Dağıtım (Deploy):</span>
+<span class="font-data-mono text-data-mono text-on-surface font-medium">Bugün, 09:42</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-outline">View Cache Bellek:</span>
+<span class="font-data-mono text-data-mono text-on-surface font-medium">14.8 MB (Sağlıklı)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-outline">Uptime Süresi:</span>
+<span class="font-data-mono text-data-mono text-secondary font-medium">%99.98</span>
+</div>
+</div>
+<a class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-surface-container-lowest text-primary hover:bg-surface-container text-label-md font-label-md transition-colors shadow-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">public</span>
+<span>Canlı Siteyi Ziyaret Et</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Message Detail Modal (Backdrop and Dialog) -->
+<div class="fixed inset-0 z-50 bg-primary/40 backdrop-blur-sm hidden items-center justify-center p-4" id="messageModal">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-6 shadow-xl relative animate-in fade-in zoom-in-95 duration-200">
+<div class="flex items-start justify-between pb-4">
+<div>
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-tertiary-container text-on-tertiary-container font-semibold">Talebi İncele</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-2" id="modalSender">Mesaj Başlığı</h3>
+<p class="font-data-mono text-data-mono text-outline mt-0.5" id="modalDate">14 Mar 2025</p>
+</div>
+<button class="p-1 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container" onclick="closeMessageModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="py-4 space-y-3">
+<h4 class="font-title-md text-title-md text-primary font-semibold" id="modalSubject"></h4>
+<div class="p-4 rounded-lg bg-surface-container-low text-body-md font-body-md text-on-surface leading-relaxed">
+<p id="modalBody"></p>
+</div>
+</div>
+<div class="pt-4 flex items-center justify-end gap-3">
+<button class="px-4 py-2 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors" onclick="closeMessageModal()">
+          Kapat
+        </button>
+<button class="px-4 py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors flex items-center gap-1.5" onclick="alert('E-posta istemcisi açılıyor...'); closeMessageModal();">
+<span class="material-symbols-outlined text-[18px]">reply</span>
+<span>E-posta İle Yanıtla</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Client Interaction Logic -->
+<script>
+    function openMessageDetail(sender, subject, body, date) {
+      document.getElementById('modalSender').innerText = sender;
+      document.getElementById('modalSubject').innerText = subject;
+      document.getElementById('modalBody').innerText = body;
+      document.getElementById('modalDate').innerText = date;
+      const modal = document.getElementById('messageModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeMessageModal() {
+      const modal = document.getElementById('messageModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    document.getElementById('clearCacheBtn')?.addEventListener('click', function() {
+      const icon = document.getElementById('cacheIcon');
+      const text = document.getElementById('cacheText');
+      if (icon) icon.classList.add('animate-spin');
+      if (text) text.innerText = 'Temizleniyor...';
+      
+      setTimeout(() => {
+        if (icon) icon.classList.remove('animate-spin');
+        if (text) text.innerText = 'Temizlendi! (0 ms)';
+        setTimeout(() => {
+          if (text) text.innerText = 'Temizle & Yenile';
+        }, 2500);
+      }, 900);
+    });
+
+    document.getElementById('quickAddProjectBtn')?.addEventListener('click', function() {
+      const projectNavLink = document.querySelector('a[data-path="projeler"]');
+      if (projectNavLink) {
+        projectNavLink.click();
+      } else {
+        window.location.hash = 'projeler';
+      }
+    });
+  </script>
+</div>
