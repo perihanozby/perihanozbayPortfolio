@@ -1,0 +1,65 @@
+@model SkillCategory
+@{
+    ViewData["Title"] = "Yetenek Kategorileri - Ekle";
+}
+
+<div class="container-fluid px-0">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+            <h1 class="mb-2">@ViewData["Title"]</h1>
+            <p class="text-muted mb-0">Bilgileri düzenleyip Kaydet butonuna basın.</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-action="Index">Listeye Dön</a>
+    </div>
+    <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body p-4">
+            <form method="post" class="editor">
+                @Html.AntiForgeryToken()
+                <div class="text-danger mb-3" asp-validation-summary="All"></div>
+                <div class="row g-4">
+                    <div class="col-12 col-lg-6">
+<label for="field_Name" class="form-label fw-semibold">Name</label>
+Name<input class="form-control" id="field_Name" name="Name" value="@Model.Name" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("Name")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_Icon" class="form-label fw-semibold">Icon</label>
+Icon<input class="form-control" id="field_Icon" name="Icon" value="@Model.Icon" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("Icon")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_Badge" class="form-label fw-semibold">Badge</label>
+Badge<input class="form-control" id="field_Badge" name="Badge" value="@Model.Badge" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("Badge")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_ProgressBarColor" class="form-label fw-semibold">Progress Bar Color</label>
+ProgressBarColor<input class="form-control" id="field_ProgressBarColor" name="ProgressBarColor" value="@Model.ProgressBarColor" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("ProgressBarColor")</span>
+</div>
+<div class="col-12 col-lg-6">
+<div class="form-check form-switch"><label class="form-check-label" for="field_IsWide">Is Wide</label>
+IsWide<input class="form-check-input" type="checkbox" id="field_IsWide" name="IsWide" value="true" @(Model.IsWide ? "checked" : "") /><input type="hidden" name="IsWide" value="false" />
+</div>
+<span class="text-danger small">@Html.ValidationMessage("IsWide")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_DisplayOrder" class="form-label fw-semibold">Görüntüleme Sırası</label>
+DisplayOrder<input class="form-control" id="field_DisplayOrder" name="DisplayOrder" value="@Model.DisplayOrder" type="number" />
+<span class="text-danger small">@Html.ValidationMessage("DisplayOrder")</span>
+</div>
+<div class="col-12 col-lg-6">
+<div class="form-check form-switch"><label class="form-check-label" for="field_IsActive">Aktif</label>
+IsActive<input class="form-check-input" type="checkbox" id="field_IsActive" name="IsActive" value="true" @(Model.IsActive ? "checked" : "") /><input type="hidden" name="IsActive" value="false" />
+</div>
+<span class="text-danger small">@Html.ValidationMessage("IsActive")</span>
+</div>
+                </div>
+                <div class="d-flex justify-content-end flex-wrap gap-2 mt-4 pt-4 border-top">
+                    <a class="btn btn-outline-secondary px-4" asp-action="Index">Vazgeç</a>
+                    <button class="btn btn-success px-4" type="submit">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

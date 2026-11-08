@@ -1,0 +1,10 @@
+@model IEnumerable<SiteSetting>
+@{ ViewData["Title"] = "Site Ayarları"; }
+<div class="page-title"><h1>Site Ayarları</h1><a class="btn" asp-action="Create">+ Yeni Ekle</a></div>
+@if(!Model.Any()) { <p class="empty">Henüz kayıt bulunmuyor.</p> }
+else {<div class="table-wrap"><table><thead><tr><th>ID</th><th>Başlık / Ad</th><th>Durum</th><th>İşlemler</th></tr></thead><tbody>
+@foreach(var item in Model) {<tr><td>@item.SiteSettingId</td><td>@(item.GetType().GetProperty("Title")?.GetValue(item) ?? item.GetType().GetProperty("Name")?.GetValue(item) ?? item.GetType().GetProperty("FullName")?.GetValue(item) ?? item.GetType().GetProperty("Email")?.GetValue(item) ?? item.GetType().GetProperty("SiteName")?.GetValue(item) ?? item.GetType().GetProperty("Value")?.GetValue(item) ?? item.GetType().GetProperty("Description")?.GetValue(item))</td>
+<td>@(item.GetType().GetProperty("IsActive")?.GetValue(item) is bool active ? (active ? "Aktif" : "Pasif") : "—")</td>
+<td><a class="btn small light" asp-action="Edit" asp-route-id="@item.SiteSettingId">Düzenle</a>
+<form asp-action="Delete" asp-route-id="@item.SiteSettingId" method="post" class="inline" onsubmit="return confirm('Bu kaydı silmek istiyor musunuz?')">@Html.AntiForgeryToken()<button class="btn small danger">Sil</button></form></td></tr>}
+</tbody></table></div>}

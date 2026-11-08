@@ -1,0 +1,69 @@
+@model ContactInfo
+@{
+    ViewData["Title"] = "İletişim Bilgileri - Ekle";
+}
+
+<div class="container-fluid px-0">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+            <h1 class="mb-2">@ViewData["Title"]</h1>
+            <p class="text-muted mb-0">Bilgileri düzenleyip Kaydet butonuna basın.</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-action="Index">Listeye Dön</a>
+    </div>
+    <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body p-4">
+            <form method="post" class="editor">
+                @Html.AntiForgeryToken()
+                <div class="text-danger mb-3" asp-validation-summary="All"></div>
+                <div class="row g-4">
+                    <div class="col-12 col-lg-6">
+<label for="field_Email" class="form-label fw-semibold">E-posta</label>
+Email<input class="form-control" id="field_Email" name="Email" value="@Model.Email" type="email" />
+<span class="text-danger small">@Html.ValidationMessage("Email")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_LinkedInUrl" class="form-label fw-semibold">Linked In Url</label>
+LinkedInUrl<input class="form-control" id="field_LinkedInUrl" name="LinkedInUrl" value="@Model.LinkedInUrl" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("LinkedInUrl")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_GithubUrl" class="form-label fw-semibold">GitHub URL</label>
+GithubUrl<input class="form-control" id="field_GithubUrl" name="GithubUrl" value="@Model.GithubUrl" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("GithubUrl")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_Location" class="form-label fw-semibold">Konum</label>
+Location<input class="form-control" id="field_Location" name="Location" value="@Model.Location" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("Location")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_WorkModel" class="form-label fw-semibold">Work Model</label>
+WorkModel<input class="form-control" id="field_WorkModel" name="WorkModel" value="@Model.WorkModel" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("WorkModel")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_Title" class="form-label fw-semibold">Başlık</label>
+Title<input class="form-control" id="field_Title" name="Title" value="@Model.Title" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("Title")</span>
+</div>
+<div class="col-12">
+<label for="field_Description" class="form-label fw-semibold">Açıklama</label>
+Description<textarea class="form-control" id="field_Description" name="Description" rows="4">@Model.Description</textarea>
+<span class="text-danger small">@Html.ValidationMessage("Description")</span>
+</div>
+<div class="col-12 col-lg-6">
+<div class="form-check form-switch"><label class="form-check-label" for="field_IsAvailable">Is Available</label>
+IsAvailable<input class="form-check-input" type="checkbox" id="field_IsAvailable" name="IsAvailable" value="true" @(Model.IsAvailable ? "checked" : "") /><input type="hidden" name="IsAvailable" value="false" />
+</div>
+<span class="text-danger small">@Html.ValidationMessage("IsAvailable")</span>
+</div>
+                </div>
+                <div class="d-flex justify-content-end flex-wrap gap-2 mt-4 pt-4 border-top">
+                    <a class="btn btn-outline-secondary px-4" asp-action="Index">Vazgeç</a>
+                    <button class="btn btn-success px-4" type="submit">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="wwwroot\admin\css\" />
     <Folder Include="wwwroot\admin\js\" />
     <Folder Include="wwwroot\admin\images\" />
   </ItemGroup>

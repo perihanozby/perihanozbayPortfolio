@@ -1,0 +1,93 @@
+@model About
+@{
+    ViewData["Title"] = "Hakkımda - Düzenle";
+}
+
+<div class="container-fluid px-0">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+            <h1 class="mb-2">@ViewData["Title"]</h1>
+            <p class="text-muted mb-0">Bilgileri düzenleyip Kaydet butonuna basın.</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-action="Index">Listeye Dön</a>
+    </div>
+    <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body p-4">
+            <form method="post" class="editor">
+                @Html.AntiForgeryToken()
+                <div class="text-danger mb-3" asp-validation-summary="All"></div>
+                <div class="row g-4">
+                    <div class="col-12 col-lg-6">
+<label for="field_FullName" class="form-label fw-semibold">Ad Soyad</label>
+FullName<input class="form-control" id="field_FullName" name="FullName" value="@Model.FullName" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("FullName")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_Title" class="form-label fw-semibold">Başlık</label>
+Title<input class="form-control" id="field_Title" name="Title" value="@Model.Title" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("Title")</span>
+</div>
+<div class="col-12">
+<label for="field_ShortDescription" class="form-label fw-semibold">Kısa Açıklama</label>
+ShortDescription<textarea class="form-control" id="field_ShortDescription" name="ShortDescription" rows="4">@Model.ShortDescription</textarea>
+<span class="text-danger small">@Html.ValidationMessage("ShortDescription")</span>
+</div>
+<div class="col-12">
+<label for="field_Description" class="form-label fw-semibold">Açıklama</label>
+Description<textarea class="form-control" id="field_Description" name="Description" rows="4">@Model.Description</textarea>
+<span class="text-danger small">@Html.ValidationMessage("Description")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_ImageUrl" class="form-label fw-semibold">Görsel URL</label>
+ImageUrl<input class="form-control" id="field_ImageUrl" name="ImageUrl" value="@Model.ImageUrl" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("ImageUrl")</span>
+</div>
+<div class="col-12">
+<label for="field_EngineeringPrinciple" class="form-label fw-semibold">Engineering Principle</label>
+EngineeringPrinciple<textarea class="form-control" id="field_EngineeringPrinciple" name="EngineeringPrinciple" rows="4">@Model.EngineeringPrinciple</textarea>
+<span class="text-danger small">@Html.ValidationMessage("EngineeringPrinciple")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_Degree" class="form-label fw-semibold">Derece</label>
+Degree<input class="form-control" id="field_Degree" name="Degree" value="@Model.Degree" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("Degree")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_University" class="form-label fw-semibold">Üniversite</label>
+University<input class="form-control" id="field_University" name="University" value="@Model.University" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("University")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_MainFocus" class="form-label fw-semibold">Main Focus</label>
+MainFocus<input class="form-control" id="field_MainFocus" name="MainFocus" value="@Model.MainFocus" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("MainFocus")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_Location" class="form-label fw-semibold">Konum</label>
+Location<input class="form-control" id="field_Location" name="Location" value="@Model.Location" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("Location")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_Languages" class="form-label fw-semibold">Diller</label>
+Languages<input class="form-control" id="field_Languages" name="Languages" value="@Model.Languages" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("Languages")</span>
+</div>
+<div class="col-12 col-lg-6">
+<label for="field_CareerStatusTitle" class="form-label fw-semibold">Career Status Title</label>
+CareerStatusTitle<input class="form-control" id="field_CareerStatusTitle" name="CareerStatusTitle" value="@Model.CareerStatusTitle" type="text" />
+<span class="text-danger small">@Html.ValidationMessage("CareerStatusTitle")</span>
+</div>
+<div class="col-12">
+<label for="field_CareerStatusDescription" class="form-label fw-semibold">Career Status Description</label>
+CareerStatusDescription<textarea class="form-control" id="field_CareerStatusDescription" name="CareerStatusDescription" rows="4">@Model.CareerStatusDescription</textarea>
+<span class="text-danger small">@Html.ValidationMessage("CareerStatusDescription")</span>
+</div>
+                </div>
+                <div class="d-flex justify-content-end flex-wrap gap-2 mt-4 pt-4 border-top">
+                    <a class="btn btn-outline-secondary px-4" asp-action="Index">Vazgeç</a>
+                    <button class="btn btn-success px-4" type="submit">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

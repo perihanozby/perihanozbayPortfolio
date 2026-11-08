@@ -1,0 +1,4 @@
+@model Message
+@{ViewData["Title"]="Mesaj Detayı";}
+<div class="panel"><h1>@Model.Subject</h1><p><strong>Gönderen:</strong> @Model.FullName (@Model.Email)</p><p><strong>Tarih:</strong> @Model.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</p><hr/><p style="white-space:pre-wrap">@Model.Content</p>
+<form asp-action="Delete" asp-route-id="@Model.MessageId" method="post" onsubmit="return confirm('Mesaj silinsin mi?')">@Html.AntiForgeryToken()<button class="btn danger">Mesajı Sil</button><a class="btn light" asp-action="Index">Geri</a></form></div>
